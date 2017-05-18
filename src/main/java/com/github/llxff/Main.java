@@ -6,87 +6,102 @@ public class Main {
   }
 }
 
-// Класс для сохранения и загрузки состояния процессов и памяти
-class MachineStorage {
-  // Название файла, в котором хранится состояние
-  private String filename;
+// Класс упорядоченного однонаправленного связанного списка, содержащий объекты типа T
+class OrderedLinkedList<T> {
+  // Класс элемента списка
+  class Item {
+    // Непосредственно объект данных
+    private T subject;
+    // Следующий элемент списка
+    private Item next;
 
-  // Загрузка состояния
-  public VirtualMachine load() {}
-  // Сохранение состояния
-  public void save(VirtualMachine machine) {}
+    public Item(T subject) { }
+
+    // получение объекта данных
+    public T getSubject() { return null; }
+    // получение следующего элемента
+    public Item getNext() { return null; }
+    // метод сравнения двух элементов для упорядочивания списка
+    public int compareTo(Item subject) { return 0; }
+  }
+
+  private Item head;
+  private int length;
+
+  public Item getHead() { return null; }
+  public boolean isEmpty() { return false; }
+  public int getLength() { return length; }
+  public void add(T item) {}
+  public void remove(T item) {}
+}
+
+// Класс реализации очереди
+class Queue<T> {
+  private T[] items;
+
+  public void enqueue(T item) {}
+  public T dequeue() { return null; }
+  public boolean isEmpty() { return false; }
 }
 
 // Класс для управления процессами
 class VirtualMachine {
-  // Список процессов
-  private LinkedList<Process> processes;
+  // Название файла, в котором хранится состояние
+  private String fileName;
 
-  // Объект для управления памятью
-  private Memory memory;
+  // Список процессов
+  private OrderedLinkedList<Process> processes;
+
+  // Загрузка состояния
+  public static VirtualMachine load(String fileName) { return null; }
 
   // Создание нового процесса
-  public Process add() {}
+  public Process addProcess() { return null; }
+
   // Завершение процесса
-  public void kill(int pid) {}
+  public void killProcess(int pid) {}
+
+  // Сохранение состояния
+  public void save() {}
+
+  public String getFileName() { return fileName; }
 }
 
 // Класс процесса
-class Process implements Serializable {
+class Process {
   // Идентификатор процесса
   private int id;
 
-  // Массив используемыех страниц памяти
-  private ArrayList<MemoryPage> pages;
-
-  // Объект для управления памятью
-  private Memory memory;
+  // Используемые страниц памяти
+  private Queue<MemoryPage> pages;
 
   // Конструктор
-  public Process(int id, Memory memory) {}
+  public Process(int id) {}
+
+  public int getId() { return id; }
 
   // Добавление новой страницы памяти процессу
-  public void addMoreMemory(int amount) {}
+  public void addMemoryPage() {}
+
+  // Удаление страницы памяти процесса
+  public void removeMemoryPage() {}
 
   // Завершить процесс и высвободить память
   public void die() {}
 }
 
-// Класс для управления памятью
-class Memory implements Serializable {
-  // Объем памяти
-  private int size;
-
-  // Выделенные страницы
-  private ArrayList<MemoryPage> pages;
-
-  // Конструктор
-  public Memory(int size) {}
-
-  // Выделить новую страницу памяти
-  public MemoryPage allocate() {}
-
-  // Высвободить указанную страницу
-  public void free(MemoryPage page) {}
-
-  // Использованный объем памяти
-  public int usedAmount() {}
-
-  // Свободный объем памяти
-  public int freeAmount() {}
-}
-
 // Класс страницы памяти
-class MemoryPage implements Serializable {
+class MemoryPage {
   // Номер страницы
   private int number;
 
   // Статус
   private String status;
 
-  // Размер
-  private int size;
-
   // Конструктор
-  public MemoryPage(int number, int size) {}
+  public MemoryPage(int number) {}
+
+  public int getNumber() { return number; }
+
+  public String getStatus() { return status; }
 }
