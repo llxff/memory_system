@@ -15,33 +15,44 @@ class OrderedLinkedList<T> {
     // Следующий элемент списка
     private Item next;
 
-    public Item(T subject) { }
+    public Item(T subject) {}
 
     // получение объекта данных
-    public T getSubject() { return null; }
+    public T getSubject() {}
     // получение следующего элемента
-    public Item getNext() { return null; }
+    public Item getNext() {}
     // метод сравнения двух элементов для упорядочивания списка
-    public int compareTo(Item subject) { return 0; }
+    public int compareTo(Item subject) {}
   }
 
+  // Первый элемент списка
   private Item head;
+  // Количество элементов
   private int length;
 
-  public Item getHead() { return null; }
-  public boolean isEmpty() { return false; }
-  public int getLength() { return length; }
+  // Получить первый элемент списка
+  public Item getHead() {}
+  // Пустой ли список?
+  public boolean isEmpty() {}
+  // Получить количество элементов в списке
+  public int getLength() {}
+  // Добавить элемент в список
   public void add(T item) {}
-  public void remove(T item) {}
+  // Удалить элемент из списка
+  public void remove(int index) {}
 }
 
 // Класс реализации очереди
 class Queue<T> {
+  // Массив элементов
   private T[] items;
 
+  // Добавить элемент в очередь
   public void enqueue(T item) {}
-  public T dequeue() { return null; }
-  public boolean isEmpty() { return false; }
+  // Извлечь элемент из очереди
+  public T dequeue() {}
+  // Пустая ли очередь?
+  public boolean isEmpty() {}
 }
 
 // Класс для управления процессами
@@ -53,10 +64,10 @@ class VirtualMachine {
   private OrderedLinkedList<Process> processes;
 
   // Загрузка состояния
-  public static VirtualMachine load(String fileName) { return null; }
+  public static VirtualMachine load(String fileName) {}
 
   // Создание нового процесса
-  public Process addProcess() { return null; }
+  public Process addProcess() {}
 
   // Завершение процесса
   public void killProcess(int pid) {}
@@ -64,7 +75,8 @@ class VirtualMachine {
   // Сохранение состояния
   public void save() {}
 
-  public String getFileName() { return fileName; }
+  // Получить название файла, в котором хранится состояние
+  public String getFileName() {}
 }
 
 // Класс процесса
@@ -78,7 +90,7 @@ class Process {
   // Конструктор
   public Process(int id) {}
 
-  public int getId() { return id; }
+  public int getId() {}
 
   // Добавление новой страницы памяти процессу
   public void addMemoryPage() {}
@@ -101,7 +113,9 @@ class MemoryPage {
   // Конструктор
   public MemoryPage(int number) {}
 
-  public int getNumber() { return number; }
+  // Получить номер страницы
+  public int getNumber() {}
 
-  public String getStatus() { return status; }
+  // Получить статус страницы
+  public String getStatus() {}
 }
