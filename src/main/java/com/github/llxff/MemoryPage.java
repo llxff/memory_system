@@ -8,10 +8,18 @@ public class MemoryPage {
   private String status;
 
   // Конструктор
-  public MemoryPage(int number) {}
+  public MemoryPage(int number, String status) {
+    this.number = number;
+    this.status = status;
+  }
 
   // Получить номер страницы
-  public int getNumber() { return 0; }
+  public int getNumber() {
+    return this.number;
+  }
+
   // Получить статус страницы
-  public String getStatus() { return null; }
+  public String getStatus() {
+    return this.status;
+  }
 }

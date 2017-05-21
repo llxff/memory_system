@@ -112,6 +112,29 @@ public class ProcessesListTest {
   }
 
   @Test
+  public void removeFromTheMiddle() {
+    ProcessesList list = new ProcessesList();
+
+    Process process1 = new Process(1);
+    Process process2 = new Process(2);
+    Process process3 = new Process(3);
+    Process process4 = new Process(4);
+
+    list.add(process1);
+    list.add(process2);
+    list.add(process3);
+    list.add(process4);
+
+    list.remove(2);
+
+    assertEquals(process1, list.get(0).getProcess());
+    assertEquals(process2, list.get(1).getProcess());
+    assertEquals(process4, list.get(2).getProcess());
+    assertNull(list.get(3));
+    assertEquals(3, list.getLength());
+  }
+
+  @Test
   public void getWithEmptyList() {
     ProcessesList list = new ProcessesList();
 
@@ -174,10 +197,8 @@ public class ProcessesListTest {
     list.add(process1);
     list.add(process2);
 
-    ProcessesListItem head = list.getHead();
-
-    assertEquals(process1, head.getProcess());
-    assertEquals(process2, head.getNext().getProcess());
+    assertEquals(process1, list.get(0).getProcess());
+    assertEquals(process2, list.get(1).getProcess());
   }
 
   @Test
@@ -190,9 +211,48 @@ public class ProcessesListTest {
     list.add(process1);
     list.add(process2);
 
-    ProcessesListItem head = list.getHead();
+    assertEquals(process2, list.get(0).getProcess());
+    assertEquals(process1, list.get(1).getProcess());
+  }
 
-    assertEquals(process2, head.getProcess());
-    assertEquals(process1, head.getNext().getProcess());
+  @Test
+  public void addProcessInTheMiddle() {
+    ProcessesList list = new ProcessesList();
+
+    Process process1 = new Process(1);
+    Process process2 = new Process(2);
+    Process process3 = new Process(3);
+
+    list.add(process1);
+    list.add(process3);
+    list.add(process2);
+
+    assertEquals(process1, list.get(0).getProcess());
+    assertEquals(process2, list.get(1).getProcess());
+    assertEquals(process3, list.get(2).getProcess());
+    assertNull(list.get(3));
+    assertEquals(3, list.getLength());
+  }
+
+  @Test
+  public void addProcessToTheEnd() {
+    ProcessesList list = new ProcessesList();
+
+    Process process1 = new Process(1);
+    Process process2 = new Process(2);
+    Process process3 = new Process(3);
+    Process process4 = new Process(4);
+
+    list.add(process1);
+    list.add(process3);
+    list.add(process2);
+    list.add(process4);
+
+    assertEquals(process1, list.get(0).getProcess());
+    assertEquals(process2, list.get(1).getProcess());
+    assertEquals(process3, list.get(2).getProcess());
+    assertEquals(process4, list.get(3).getProcess());
+    assertNull(list.get(4));
+    assertEquals(4, list.getLength());
   }
 }

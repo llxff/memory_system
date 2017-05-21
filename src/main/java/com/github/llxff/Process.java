@@ -8,12 +8,23 @@ public class Process {
   private MemoryPagesQueue pages;
 
   // Конструктор
-  public Process(int id) {}
+  public Process(int id) {
+    this.id = id;
+    this.pages = new MemoryPagesQueue();
+  }
 
   // Получить идентификатор процесса
-  public int getId() { return 0; }
+  public int getId() {
+    return this.id;
+  }
+
   // Добавление новой страницы памяти процессу
-  public void addMemoryPage(MemoryPage page) {}
-  // Удаление страницы памяти процесса
-  public void removeMemoryPage(int index) {}
+  public void addMemoryPage(MemoryPage page) {
+    this.pages.enqueue(page);
+  }
+
+  // Получение страницы памяти процесса
+  public MemoryPage retrieveMemoryPage() {
+    return this.pages.dequeue();
+  }
 }
