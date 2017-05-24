@@ -78,10 +78,12 @@ public class ProcessesList {
     this.length++;
   }
 
+  // Установить корневой элемент
   private void setHead(ListItem newHead) {
     this.headItem = newHead;
   }
 
+  // Внести элемент между соседними элементами
   private void addInTheMiddle(ListItem currentItem, ListItem newItem) {
     if (currentItem.getNext() == null) {
       currentItem.setNext(newItem);
@@ -112,10 +114,12 @@ public class ProcessesList {
     this.length--;
   }
 
+  // Входит ли индекс в диапазон доступных элементов
   private boolean isWrongIndex(int index) {
     return index < 0 || index >= getLength();
   }
 
+  // Получить элемент по индексу
   public ListItem get(int index) {
     if(isWrongIndex(index)) return null;
 

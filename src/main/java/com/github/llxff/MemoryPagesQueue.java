@@ -43,6 +43,7 @@ public class MemoryPagesQueue {
     }
   }
 
+  // Проверка, входит ли индекс в диапазон доступных элементов
   private boolean isValidIndex(int index) {
     return 0 <= index && index < this.pages.size();
   }
