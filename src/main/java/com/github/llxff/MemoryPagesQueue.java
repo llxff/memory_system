@@ -1,55 +1,54 @@
 package com.github.llxff;
 
-import java.util.ArrayList;
-
 // Класс реализации очереди страниц памяти
 public class MemoryPagesQueue {
-  // Массив элементов
-  private ArrayList<MemoryPage> pages;
+  // Страницы памяти
+  private MemoryPage[] pages;
+  // Максимальный очереди
+  private int capacity;
+  // Индекс последнего добавленного элемента
+  private int begins;
+  // Индекс последнего выкинутого элемента
+  private int ends;
+  // Количество элементов
+  private int length;
 
-  public MemoryPagesQueue() {
-    this.pages = new ArrayList<>();
+  public MemoryPagesQueue(int capacity) {
+    this.pages = new MemoryPage[capacity];
+    this.capacity = capacity;
+    this.length = 0;
+    this.begins = -1;
+    this.ends = -1;
   }
 
   // Добавить элемент в очередь
   public void enqueue(MemoryPage page) {
-    this.pages.add(page);
+    if(isFull()) return;
+
+    this.pages[++this.begins] = page;
+    this.length++;
   }
 
   // Извлечь элемент из очереди
   public MemoryPage dequeue() {
     if(isEmpty()) return null;
 
-    return this.pages.remove(0);
+    this.length--;
+    return this.pages[++this.ends];
   }
 
   // Пустая ли очередь?
   public boolean isEmpty() {
-    return this.pages.isEmpty();
+    return this.length == 0;
+  }
+
+  // Полная ли очередь?
+  public boolean isFull() {
+    return this.begins == (capacity - 1);
   }
 
   // Получить размер очереди
   public int getLength() {
-    return this.pages.size();
-  }
-
-  // Получить страницу памяти по индексу
-  public MemoryPage get(int index) {
-    if(isValidIndex(index)) {
-      return this.pages.get(index);
-    }
-    else {
-      return null;
-    }
-  }
-
-  // Проверка, входит ли индекс в диапазон доступных элементов
-  private boolean isValidIndex(int index) {
-    return 0 <= index && index < this.pages.size();
-  }
-
-  // Удалить страницу памяти по индексу
-  public void remove(int index) {
-    if(isValidIndex(index)) this.pages.remove(index);
+    return this.length;
   }
 }

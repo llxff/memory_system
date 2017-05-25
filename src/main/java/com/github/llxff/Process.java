@@ -10,7 +10,7 @@ public class Process {
   // Конструктор
   public Process(int id) {
     this.id = id;
-    this.pages = new MemoryPagesQueue();
+    this.pages = new MemoryPagesQueue(6);
   }
 
   // Получить идентификатор процесса
