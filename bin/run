@@ -1,0 +1,4 @@
+#!/bin/bash
+
+mvn clean jfx:jar assembly:single
+java -cp target/ProcessesTree-1.0-SNAPSHOT-jar-with-dependencies.jar com.github.llxff.Main
