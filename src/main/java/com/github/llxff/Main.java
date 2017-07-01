@@ -1,45 +1,23 @@
 package com.github.llxff;
 
-import com.thoughtworks.xstream.XStream;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
-
-public class Main {
-  public static void main(String[] args) {
-    save();
-    load();
+public class Main extends Application {
+  public static void main(String[] args) throws Exception {
+    launch(args);
   }
 
-  private static void save() {
-    try {
-      VirtualMachine machine = new VirtualMachine("/tmp/foo.xml");
-
-      ProcessesList processes = new ProcessesList();
-      processes.add(new Process(1));
-
-      Process process = new Process(2);
-      process.addMemoryPage(new MemoryPage(1, "active"));
-      process.addMemoryPage(new MemoryPage(2, "disabled"));
-      processes.add(process);
-      processes.add(new Process(3));
-
-      machine.save(processes);
-
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
-  }
-
-  private static void load() {
-    try {
-      VirtualMachine machine1 = new VirtualMachine("/tmp/foo.xml");
-
-      ProcessesList list = machine1.load();
-
-      VirtualMachine machine2 = new VirtualMachine("/tmp/foo2.xml");
-      machine2.save(list);
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
+  @Override
+  public void start(Stage stage) throws Exception {
+    String fxmlFile = "/fxml/project.fxml";
+    FXMLLoader loader = new FXMLLoader();
+    Parent root = loader.load(getClass().getResourceAsStream(fxmlFile));
+    stage.setTitle("Курсовая работа");
+    stage.setScene(new Scene(root));
+    stage.show();
   }
 }
