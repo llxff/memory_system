@@ -4,12 +4,8 @@ package com.github.llxff.domain;
 public class MemoryPagesQueue {
   // Страницы памяти
   private MemoryPage[] pages;
-  // Максимальный очереди
+  // Максимальный размер очереди
   private int capacity;
-  // Индекс последнего добавленного элемента
-  private int begins;
-  // Индекс последнего выкинутого элемента
-  private int ends;
   // Количество элементов
   private int length;
 
@@ -17,24 +13,38 @@ public class MemoryPagesQueue {
     this.pages = new MemoryPage[capacity];
     this.capacity = capacity;
     this.length = 0;
-    this.begins = -1;
-    this.ends = -1;
   }
 
   // Добавить элемент в очередь
-  public void enqueue(MemoryPage page) {
-    if(isFull()) return;
+  public void enqueue(MemoryPage page) throws IllegalStateException {
+    if(isFull()) throw new IllegalStateException("Queue is full");
 
-    this.pages[++this.begins] = page;
-    this.length++;
+    this.pages[this.length++] = page;
   }
 
   // Извлечь элемент из очереди
-  public MemoryPage dequeue() {
-    if(isEmpty()) return null;
+  public MemoryPage dequeue() throws IllegalStateException {
+    if(isEmpty()) throw new IllegalStateException("Queue is empty");
+
+    MemoryPage page = this.pages[0];
+
+    shiftPages();
 
     this.length--;
-    return this.pages[++this.ends];
+
+    return page;
+  }
+
+  // Сдвинуть элементы влево
+  private void shiftPages() {
+    for(int i = 1; i < this.capacity; i++) {
+      if(i < this.length) {
+        this.pages[i-1] = this.pages[i];
+      }
+      else {
+        this.pages[i-1] = null;
+      }
+    }
   }
 
   // Пустая ли очередь?
@@ -44,7 +54,7 @@ public class MemoryPagesQueue {
 
   // Полная ли очередь?
   public boolean isFull() {
-    return this.begins == (capacity - 1);
+    return this.length == this.capacity;
   }
 
   // Получить размер очереди
