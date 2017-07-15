@@ -10,22 +10,22 @@ public class ProcessTreeCell extends TreeCell<Object> {
   private ProcessesList processesList;
   private MainController controller;
 
-  private ContextMenu addProcessMenu = new ContextMenu();
-  private ContextMenu addMemoryPageMenu = new ContextMenu();
-  private ContextMenu changeStatusMenu = new ContextMenu();
+  private ContextMenu mainMenu = new ContextMenu();
+  private ContextMenu processesMenu = new ContextMenu();
+  private ContextMenu memoryMenu = new ContextMenu();
 
   public ProcessTreeCell(ProcessesList processesList, MainController controller) {
     this.processesList = processesList;
     this.controller = controller;
 
     initNewProcessAction();
-    initNewMemoryPageAction();
-    initChangeStatusMenu();
+    initProcessesMenu();
+    initMemoryMenu();
   }
 
   private void initNewProcessAction() {
     MenuItem addMenuItem = new MenuItem("Добавить процесс");
-    addProcessMenu.getItems().add(addMenuItem);
+    mainMenu.getItems().add(addMenuItem);
     addMenuItem.setOnAction(t -> {
       if(getTreeItem().getValue() instanceof String) {
         Process process = new Process(ThreadLocalRandom.current().nextInt(1, 100));
@@ -37,9 +37,8 @@ public class ProcessTreeCell extends TreeCell<Object> {
     });
   }
 
-  private void initNewMemoryPageAction() {
+  private void initProcessesMenu() {
     MenuItem addMenuItem = new MenuItem("Добавить страницу памяти");
-    addMemoryPageMenu.getItems().add(addMenuItem);
     addMenuItem.setOnAction(t -> {
       if(getTreeItem().getValue() instanceof Process) {
         MemoryPage page = new MemoryPage(ThreadLocalRandom.current().nextInt(1, 100), "active");
@@ -49,12 +48,34 @@ public class ProcessTreeCell extends TreeCell<Object> {
         addTreeItem(page);
       }
     });
+
+    MenuItem removeMenuItem = new MenuItem("Удалить процесс");
+    removeMenuItem.setOnAction(t -> {
+      if(getTreeItem().getValue() instanceof Process) {
+        Process process = (Process) getTreeItem().getValue();
+
+        try {
+          int i = processesList.getIndex(process);
+          processesList.remove(i);
+
+          getTreeItem().getChildren().remove(getTreeItem());
+          controller.refreshProcessesList();
+        }
+        catch (IndexOutOfBoundsException e) {
+          showError(
+            "Выбранный процесс не существует",
+            "Попробуйте ещё разок, на этот раз всё получится!"
+          );
+        }
+      }
+    });
+
+    processesMenu.getItems().add(addMenuItem);
+    processesMenu.getItems().add(removeMenuItem);
   }
 
-  private void initChangeStatusMenu() {
+  private void initMemoryMenu() {
     MenuItem addMenuItem = new MenuItem("Изменить статус");
-    changeStatusMenu.getItems().add(addMenuItem);
-
     addMenuItem.setOnAction(t -> {
       if(getTreeItem().getValue() instanceof MemoryPage) {
         MemoryPage page = (MemoryPage) getTreeItem().getValue();
@@ -69,6 +90,8 @@ public class ProcessTreeCell extends TreeCell<Object> {
         setText(getTreeItem().getValue().toString());
       }
     });
+
+    memoryMenu.getItems().add(addMenuItem);
   }
 
   private void addTreeItem(Object item) {
@@ -88,12 +111,21 @@ public class ProcessTreeCell extends TreeCell<Object> {
       setText(getItem().toString());
 
       if (getItem() instanceof String) {
-        setContextMenu(addProcessMenu);
+        setContextMenu(mainMenu);
       } else if (getItem() instanceof Process) {
-        setContextMenu(addMemoryPageMenu);
+        setContextMenu(processesMenu);
       } else if (getItem() instanceof MemoryPage) {
-        setContextMenu(changeStatusMenu);
+        setContextMenu(memoryMenu);
       }
     }
+  }
+
+  private void showError(String header, String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Что-то пошло не так...");
+    alert.setHeaderText(header);
+    alert.setContentText(message);
+
+    alert.showAndWait();
   }
 }

@@ -98,7 +98,7 @@ public class ProcessesList {
   }
 
   // ”далить элемент из списка
-  public void remove(int index) {
+  public void remove(int index) throws IndexOutOfBoundsException {
     if(isWrongIndex(index)) return;
 
     if (index == 0) {
@@ -112,6 +112,20 @@ public class ProcessesList {
     }
 
     this.length--;
+  }
+
+  public int getIndex(Process process) {
+    int i = 0;
+    ListItem item = getHead();
+
+    while(item.process != process) {
+      i++;
+      item = item.getNext();
+
+      if(item == null) throw new IndexOutOfBoundsException();
+    }
+
+    return i;
   }
 
   // ¬ходит ли индекс в диапазон доступных элементов
