@@ -19,12 +19,12 @@ public class Process {
   }
 
   // Добавление новой страницы памяти процессу
-  public void addMemoryPage(MemoryPage page) {
+  public void addMemoryPage(MemoryPage page) throws IllegalStateException {
     this.pages.enqueue(page);
   }
 
   // Получение страницы памяти процесса
-  public MemoryPage retrieveMemoryPage() {
+  public MemoryPage retrieveMemoryPage() throws IllegalStateException {
     return this.pages.dequeue();
   }
 

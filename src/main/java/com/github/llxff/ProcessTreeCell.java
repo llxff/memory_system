@@ -41,11 +41,20 @@ public class ProcessTreeCell extends TreeCell<Object> {
     MenuItem addMenuItem = new MenuItem("Добавить страницу памяти");
     addMenuItem.setOnAction(t -> {
       if(getTreeItem().getValue() instanceof Process) {
-        MemoryPage page = new MemoryPage(ThreadLocalRandom.current().nextInt(1, 100), "active");
         Process process = (Process) getTreeItem().getValue();
 
-        process.addMemoryPage(page);
-        addTreeItem(page);
+        try {
+          MemoryPage page = new MemoryPage(ThreadLocalRandom.current().nextInt(1, 100), "active");
+
+          process.addMemoryPage(page);
+          addTreeItem(page);
+        }
+        catch(IllegalStateException e) {
+          showError(
+            "Нельзя добавить больше памяти!",
+            String.format("Ведь их уже %d!", process.getPagesCount())
+          );
+        }
       }
     });
 
@@ -70,8 +79,29 @@ public class ProcessTreeCell extends TreeCell<Object> {
       }
     });
 
+    MenuItem removeMemoryMenuItem = new MenuItem("Удалить память");
+    removeMemoryMenuItem.setOnAction(t -> {
+      if(getTreeItem().getValue() instanceof Process) {
+        Process process = (Process) getTreeItem().getValue();
+
+        try {
+          process.retrieveMemoryPage();
+
+          getTreeItem().getChildren().remove(process.getPagesCount());
+          controller.refreshProcessesList();
+        }
+        catch (IllegalStateException e) {
+          showError(
+              "Памяти то больше нет!",
+              "Нельзя удалить то, чего нет! ;)"
+          );
+        }
+      }
+    });
+
     processesMenu.getItems().add(addMenuItem);
     processesMenu.getItems().add(removeMenuItem);
+    processesMenu.getItems().add(removeMemoryMenuItem);
   }
 
   private void initMemoryMenu() {
