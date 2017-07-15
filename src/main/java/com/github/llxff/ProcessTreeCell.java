@@ -20,7 +20,6 @@ public class ProcessTreeCell extends TreeCell<Object> {
 
     initNewProcessAction();
     initProcessesMenu();
-    initMemoryMenu();
   }
 
   private void initNewProcessAction() {
@@ -47,7 +46,7 @@ public class ProcessTreeCell extends TreeCell<Object> {
           MemoryPage page = new MemoryPage(ThreadLocalRandom.current().nextInt(1, 100), "active");
 
           process.addMemoryPage(page);
-          addTreeItem(page);
+          addToTable(page);
         }
         catch(IllegalStateException e) {
           showError(
@@ -68,6 +67,7 @@ public class ProcessTreeCell extends TreeCell<Object> {
           processesList.remove(i);
 
           getTreeItem().getChildren().remove(getTreeItem());
+          controller.cleadMemoryTable();
           controller.refreshProcessesList();
         }
         catch (IndexOutOfBoundsException e) {
@@ -87,8 +87,7 @@ public class ProcessTreeCell extends TreeCell<Object> {
         try {
           process.retrieveMemoryPage();
 
-          getTreeItem().getChildren().remove(process.getPagesCount());
-          controller.refreshProcessesList();
+          controller.removeMemoryFromTable(0);
         }
         catch (IllegalStateException e) {
           showError(
@@ -104,29 +103,13 @@ public class ProcessTreeCell extends TreeCell<Object> {
     processesMenu.getItems().add(removeMemoryMenuItem);
   }
 
-  private void initMemoryMenu() {
-    MenuItem addMenuItem = new MenuItem("Изменить статус");
-    addMenuItem.setOnAction(t -> {
-      if(getTreeItem().getValue() instanceof MemoryPage) {
-        MemoryPage page = (MemoryPage) getTreeItem().getValue();
-
-        if(page.getStatus() == "active") {
-          page.setStatus("disabled");
-        }
-        else {
-          page.setStatus("active");
-        }
-
-        setText(getTreeItem().getValue().toString());
-      }
-    });
-
-    memoryMenu.getItems().add(addMenuItem);
-  }
-
   private void addTreeItem(Object item) {
     getTreeItem().getChildren().add(new TreeItem(item));
     getTreeItem().setExpanded(true);
+  }
+
+  private void addToTable(MemoryPage page) {
+    controller.addMemoryToTable(page);
   }
 
   @Override
@@ -151,11 +134,6 @@ public class ProcessTreeCell extends TreeCell<Object> {
   }
 
   private void showError(String header, String message) {
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-    alert.setTitle("Что-то пошло не так...");
-    alert.setHeaderText(header);
-    alert.setContentText(message);
-
-    alert.showAndWait();
+    controller.showError(header, message);
   }
 }

@@ -10,8 +10,16 @@
             xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="com.github.llxff.MainController">
     <children>
-        <TreeView fx:id="processesTree" layoutX="12.0" layoutY="62.0" prefHeight="324.0" prefWidth="600.0" />
-
+        <TreeView fx:id="processesTree" layoutX="12.0" layoutY="62.0" prefHeight="324.0" prefWidth="200.0" />
+        <TableView editable="true" fx:id="memoryTable" layoutX="222.0" layoutY="62.0" prefHeight="324.0" prefWidth="400.0">
+            <placeholder>
+                <Label text="Нет страниц памяти"/>
+            </placeholder>
+            <columns>
+                <TableColumn prefWidth="80.0" text="№" fx:id="numberColumn" />
+                <TableColumn prefWidth="318.0" text="Статус" fx:id="statusColumn" />
+            </columns>
+        </TableView>
         <Label layoutX="14.0" layoutY="18.0" text="Список процессов:">
             <font>
                 <Font size="24.0" />
