@@ -1,0 +1,144 @@
+\documentclass[russian,utf8,nocolumnsxix,nocolumnxxxii,nocolumnxxxi,hpadding=10mm]{eskdtext}
+\usepackage[russian]{babel}
+\usepackage[T2A]{fontenc}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{mathtext}
+\usepackage[numberright]{eskdplain}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\ESKDdepartment{МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РФ}
+\ESKDcompany{Университет управления «ТИСБИ»}
+\renewcommand{\ESKDtitleFontIII}{\normalsize}
+\renewcommand{\ESKDtheTitleFieldIII}{Специальность 09.03.01 «Информатика и вычислительная техника»}
+\renewcommand{\ESKDtitleFontIV}{\LARGE}
+\renewcommand{\ESKDtheTitleFieldIV}{КУРСОВАЯ РАБОТА}
+\renewcommand{\ESKDtitleFontV}{\Large}
+\renewcommand{\ESKDtheTitleFieldV}{НА ТЕМУ: «Разработка объектной программы для задачи моделирования подсистемы управления основной памятью»}
+\renewcommand{\ESKDtheTitleFieldX}{Казань,~2017г.}
+\renewcommand{\ESKDtheTitleFieldVIII}{
+\null\hfill
+\begin{minipage}{0.5\textwidth}
+\normalsize ВЫПОЛНИЛ студент гр. ДЗИ 105Н:
+\\Фомин~А.~В.
+\\ПРОВЕРИЛ преподаватель:
+\\Козин~А.~Н.
+\end{minipage}\\}
+\ESKDdate{2017/07/21}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\begin{document}
+\maketitle
+\newpage
+\hyphenpenalty=1000
+\exhyphenpenalty=1000
+\sloppy
+
+\linespread{1,4}
+\tableofcontents
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Постановка задачи}
+
+Разработать объектную программу для хранения и обработки данных о процессах и используемых ими страницах основной памяти в многозадачных ОС. Каждый процесс имеет уникальный идентификатор и рассматривается как набор страниц. В свою очередь каждая страница имеет уникальный номер и параметр «Состояние».
+
+Разработка включает в себя определение необходимых объектов и описание их в виде классов, программную реализацию методов добавления и удаления процессов и страниц, всестороннее тестирование методов с помощью консольного (при разработке) и оконного (в окончательном варианте) приложения.
+
+Для объединения процессов используется структура данных в виде адресного разомкнутого упорядоченного однонаправленного списка без заголовка. Для объединения страниц внутри процессов  используется очередь на основе обычного массива со сдвигом элементов.
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Описание используемых структур данных с алгоритмами выполнения основных операций}
+
+
+
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Краткие сведения об объектном подходе}
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Формализованное описание разработанных классов}
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Описание демонстрационного модуля с характеристикой использованных стандартных компонентов и списком реализованных обработчиков}
+
+\newpage
+\parindent=12.5mm
+\linespread{1,5}
+\section{Полный листинг программы с краткими комментариями}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{light-gray}{gray}{0.25}
+
+\lstdefinestyle{java}{
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\lstdefinestyle{xml}{
+  language=XML,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  morekeywords={AnchorPane, children, TreeView, TableView, placeholder, Label, columns, TableColumn, font, Font, Button, import}
+}
+
+\lstinputlisting[caption=Main, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/Main.java}
+
+\lstinputlisting[caption=MainController, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/MainController.java}
+
+\lstinputlisting[caption=MemoryStatus, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/MemoryStatus.java}
+
+\lstinputlisting[caption=ProcessTreeCell, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/ProcessTreeCell.java}
+
+\lstinputlisting[caption=MemoryPage, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/domain/MemoryPage.java}
+
+\lstinputlisting[caption=MemoryPagesQueue, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/domain/MemoryPagesQueue.java}
+
+\lstinputlisting[caption=Process, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/domain/Process.java}
+
+\lstinputlisting[caption=ProcessesList, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/domain/ProcessesList.java}
+
+\lstinputlisting[caption=VirtualMachine, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/domain/VirtualMachine.java}
+
+\lstinputlisting[caption=project.fxml, inputencoding=utf8, style=xml]{src/main/resources/fxml/project.fxml}
+
+\newpage
+\begin{thebibliography}{99}
+\bibitem{01} Жигалев М.А.,  Коваленко И.Г.,  Саюшев В.А. «Организация и методика производственного обучения». Москва «Высшая школа» 1978 г.
+\end{thebibliography}
+\end{document}
