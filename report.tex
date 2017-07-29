@@ -9,6 +9,8 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{setspace}
+\usepackage{dirtree}
+\usepackage{multirow}
 \ESKDdepartment{МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РФ}
 \ESKDcompany{Университет управления «ТИСБИ»}
 \renewcommand{\ESKDtitleFontIII}{\normalsize}
@@ -103,12 +105,57 @@
 
 \newpage
 \parindent=15mm
-\linespread{1,5}
+\doublespacing
 \section{Формализованное описание разработанных классов}
+\begin{center}
+\begin{tabular}{ |p{4cm}|p{12cm}| }
+	\hline
+	\multicolumn{2}{ |c| }{\textbf{MemoryPage}} \\
+	\hline
+	Тип & Описание метода \\ \hline
+	\multirow{2}{*}{} & \textbf{MemoryPage(int number, String status)} \\
+ 	& Инициализация страницы памяти с указанным номером (number) и статусом (status) \\ \hline
+	\multirow{2}{*}{\textbf{int}} & \textbf{getNumber()} \\
+ 	& получение номера страницы\\ \hline
+	\multirow{2}{*}{\textbf{String}} & \textbf{getStatus()} \\
+ 	& получение статуса страницы\\ \hline
+	\multirow{2}{*}{\textbf{void}} & \textbf{setStatus(String status)} \\
+ 	& изменить статус страницы на новый статус (status)\\ \hline 	
+\end{tabular}
+
+\begin{tabular}{ |p{4cm}|p{12cm}| }
+	\hline
+	\multicolumn{2}{ |c| }{\textbf{MemoryPagesQueue}} \\
+	\hline
+	Тип & Описание метода \\ \hline
+	\multirow{2}{*}{} & \textbf{MemoryPagesQueue(int capacity)} \\
+ 	& Инициализация очереди страниц памяти с заданным максимальным количеством элементов (capacity) \\ \hline
+	\multirow{2}{*}{\textbf{void}} & \textbf{enqueue(MemoryPage page)} \\
+ 	& добавить страницу памяти в очередь\\ \hline
+	\multirow{2}{*}{\textbf{MemoryPage}} & \textbf{dequeue()} \\
+ 	& извлечь страницу памяти из очереди\\ \hline
+	\multirow{2}{*}{\textbf{boolean}} & \textbf{isEmpty()} \\
+ 	& пустая ли очередь\\ \hline 	
+ 	\multirow{2}{*}{\textbf{boolean}} & \textbf{isFull()} \\
+ 	& заполнена ли очередь\\ \hline 	
+ 	\multirow{2}{*}{\textbf{int}} & \textbf{getLength()} \\
+ 	& получить количество элементов в очереди\\ \hline 	
+ 	\multirow{2}{*}{\textbf{MemoryPage[]}} & \textbf{getPages()} \\
+ 	& получить массив элементов \\ \hline 	
+\end{tabular}
+\end{center}
+
+
+Process
+ProcessesList
+VirtualMachine
+Main
+MainController
+MemoryStatus
+ProcessTreeCell
 
 \newpage
 \parindent=15mm
-\linespread{1,5}
 \section{Описание демонстрационного модуля}
 
 \begin{figure}[!hb]
@@ -172,8 +219,34 @@
 
 \newpage
 \parindent=15mm
-\linespread{1,5}
-\section{Описание структуры проекта в соответствии с использованным инструментом разработки}
+\section{Описание структуры проекта}
+
+\renewcommand*\DTstylecomment{\rmfamily\color{black}\textsc}
+\renewcommand*\DTstyle{\ttfamily\textcolor{black}}
+\dirtree{%
+.1 /.
+.2 bin.
+.3 run\DTcomment{\small{Скрипт для компиляции и запуска проекта}}.
+.2 src.
+.3 main.
+.4 java.
+.5 com.github.llxff.
+.6 domain.
+.7 MemoryPage.java\DTcomment{\small{Класс страницы памяти}}.
+.7 MemoryPagesQueue.java\DTcomment{\small{Класс очереди страниц памяти}}.
+.7 Process.java\DTcomment{\small{Класс процесса}}.
+.7 ProcessesList.java\DTcomment{\small{Класс списка процессов}}.
+.7 VirtualMachine.java\DTcomment{\small{Класс сериализации и десериализации списка процессов}}.
+.6 Main.java\DTcomment{\small{Класс инициализации приложения}}.
+.6 MainController.java\DTcomment{\small{Главный контроллер приложения}}.
+.6 MemoryStatus.java\DTcomment{\small{Класс представления статуса страницы памяти}}.
+.6 ProcessTreeCell.java\DTcomment{\small{Класс предаставления процесса}}.
+.4 resources.
+.5. fxml.
+.6 project.fxml\DTcomment{\small{Файл графического интерфейса}}.
+.2 pom.xml\DTcomment{\small{Файл конфигурации Maven}}.
+.3
+}
 
 \newpage
 \begin{thebibliography}{99}
@@ -189,7 +262,7 @@
 \end{thebibliography}
 
 \newpage
-\parindent=12.5mm
+\parindent=15mm
 \linespread{1,5}
 \section*{Полный листинг программы с краткими комментариями}
 \addcontentsline{toc}{section}{Полный листинг программы с краткими комментариями}%
