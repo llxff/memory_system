@@ -143,16 +143,60 @@
  	\multirow{2}{*}{\textbf{MemoryPage[]}} & \textbf{getPages()} \\
  	& получить массив элементов \\ \hline 	
 \end{tabular}
+
+\begin{tabular}{ |p{4cm}|p{12cm}| }
+	\hline
+	\multicolumn{2}{ |c| }{\textbf{Process}} \\
+	\hline
+	Тип & Описание метода \\ \hline
+	\multirow{2}{*}{} & \textbf{Process(int id)} \\
+ 	& Инициализация процесса с заданным индентификатором (id) \\ \hline
+ 	\multirow{2}{*}{\textbf{int}} & \textbf{getId()} \\
+ 	& Получить индентификатор процесса \\ \hline
+ 	\multirow{2}{*}{\textbf{void}} & \textbf{addMemoryPage(MemoryPage page)} \\
+ 	& Добавить процессу страницу памяти (page) \\ \hline
+ 	\multirow{2}{*}{\textbf{MemoryPage}} & \textbf{retrieveMemoryPage()} \\
+ 	& Получить страницу памяти \\ \hline
+ 	\multirow{2}{*}{\textbf{MemoryPage[]}} & \textbf{getPages()} \\
+ 	& Получить страницы памяти \\ \hline
+ 	\multirow{2}{*}{\textbf{int}} & \textbf{getPagesCount()} \\
+ 	& Получить количество страниц памяти \\ \hline
+\end{tabular}
+
+\begin{tabular}{ |p{4cm}|p{12cm}| }
+	\hline
+	\multicolumn{2}{ |c| }{\textbf{ProcessesList}} \\
+	\hline
+	Тип & Описание метода \\ \hline
+ 	\multirow{2}{*}{\textbf{ListItem}} & \textbf{getHead()} \\
+ 	& Получить корневой контейнер процесса \\ \hline
+ 	\multirow{2}{*}{\textbf{boolean}} & \textbf{isEmpty()} \\
+ 	& Пустой ли список процессов? \\ \hline
+ 	\multirow{2}{*}{\textbf{int}} & \textbf{getLength()} \\
+ 	& Получить количество элементов в списке процессов \\ \hline
+ 	\multirow{2}{*}{\textbf{void}} & \textbf{add(Process process)} \\
+ 	& Добавить процесс в список \\ \hline
+ 	\multirow{2}{*}{\textbf{void}} & \textbf{remove(int index)} \\
+ 	& Удалить процесс из списка с заданным индексом (index) \\ \hline
+ 	\multirow{2}{*}{\textbf{int}} & \textbf{getIndex(Process process)} \\
+ 	& Получить индекс заданного процесса (process) \\ \hline
+ 	\multirow{2}{*}{\textbf{ListItem}} & \textbf{get(int index)} \\
+ 	& Получить контейнер процесса по заданному индексу (index)\\ \hline
+\end{tabular}
+
+\begin{tabular}{ |p{4cm}|p{12cm}| }
+	\hline
+	\multicolumn{2}{ |c| }{\textbf{VirtualMachine}} \\
+	\hline
+	Тип & Описание метода \\ \hline
+	\multirow{2}{*}{} & \textbf{VirtualMachine(String fileName)} \\
+ 	& Инициализация объкта загрузки и сохранения списка процессов \\ \hline
+ 	\multirow{2}{*}{\textbf{void}} & \textbf{save(ProcessesList processes)} \\
+ 	& Сериализация списка процессов в XML файл \\ \hline
+ 	\multirow{2}{*}{\textbf{ProcessesList}} & \textbf{load()} \\
+ 	& Загрузка списка процессов из XML файла \\ \hline
+\end{tabular}
 \end{center}
-
-
-Process
-ProcessesList
-VirtualMachine
-Main
-MainController
-MemoryStatus
-ProcessTreeCell
 
 \newpage
 \parindent=15mm

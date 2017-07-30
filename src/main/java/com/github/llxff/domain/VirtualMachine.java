@@ -19,11 +19,6 @@ public class VirtualMachine {
     this.processor.alias("page", MemoryPage.class);
   }
 
-  // Получить название файла, в котором хранится состояние
-  public String getFileName() {
-    return this.fileName;
-  }
-
   // Сохранение процессов
   public void save(ProcessesList processes) throws FileNotFoundException {
     try(PrintStream ps = new PrintStream(this.fileName)) {
