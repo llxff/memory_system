@@ -11,21 +11,60 @@
 \usepackage{setspace}
 \usepackage{dirtree}
 \usepackage{multirow}
-\ESKDdepartment{МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РФ}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{light-gray}{gray}{0.25}
+
+\lstdefinestyle{java}{
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\lstdefinestyle{xml}{
+  language=XML,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  morekeywords={AnchorPane, children, TreeView, TableView, placeholder, Label, columns, TableColumn, font, Font, Button, import}
+}
+
+\ESKDdepartment{Негосударственное образовательное учреждение высшего профессионального образования}
 \ESKDcompany{Университет управления «ТИСБИ»}
-\renewcommand{\ESKDtitleFontIII}{\normalsize}
-\renewcommand{\ESKDtheTitleFieldIII}{Специальность 09.03.01 «Информатика и вычислительная техника»}
 \renewcommand{\ESKDtitleFontIV}{\LARGE}
 \renewcommand{\ESKDtheTitleFieldIV}{КУРСОВАЯ РАБОТА}
 \renewcommand{\ESKDtitleFontV}{\Large}
-\renewcommand{\ESKDtheTitleFieldV}{НА ТЕМУ: «Разработка объектной программы для задачи моделирования подсистемы управления основной памятью»}
+\renewcommand{\ESKDtheTitleFieldV}{По дисциплине: «Объектно-ориентированное программирование»}
 \renewcommand{\ESKDtheTitleFieldX}{Казань,~2017г.}
 \renewcommand{\ESKDtheTitleFieldVIII}{
 \null\hfill
 \begin{minipage}{0.5\textwidth}
-\normalsize ВЫПОЛНИЛ студент гр. ДЗИ 105Н:
-\\Фомин~А.~В.
-\\ПРОВЕРИЛ преподаватель:
+\normalsize Выполнил 
+\\студент гр. ДЗИ 105Н Фомин~А.~В.
+\\Руководитель:
 \\Козин~А.~Н.
 \end{minipage}\\}
 \ESKDdate{2017/07/21}
@@ -50,6 +89,17 @@
 
 Для объединения процессов используется структура данных в виде адресного разомкнутого упорядоченного однонаправленного списка без заголовка. Для объединения страниц внутри процессов  используется очередь на основе обычного массива со сдвигом элементов.
 
+Разработка выполняется с учетом следующих требований:
+
+\begin{itemize}
+\item Имена классов, свойств и методов должны носить содержательный смысл и соответствовать информационной задаче
+\item Обязательное соблюдение принципа инкапсуляции – использование в классах только закрытых свойств и реализация необходимого набора методов доступа
+\item Наличие двух методов для сохранения всей объектной структуры во внешнем файле с обратной загрузкой, при этом стандартные механизмы сериализации разрешается использовать только как дополнение к самостоятельно реализованным методам
+\item Тестовое оконное приложение должно обладать удобным пользовательским интерфейсом с контролем вводимых данных и отображением текущего состояния объектной структуры с помощью списковых или табличных компонентов
+\item Стандартные контейнеры/коллекции (включая обобщенные классы) разрешается использовать только как дополнение к самостоятельно разработанным классам
+\end{itemize}
+ 
+В качестве языка разработки разрешается использовать  Java, С#, C++, Object/Free Pascal и соответствующие инструменты быстрой разработки приложений.
 
 \newpage
 \parindent=15mm
@@ -107,130 +157,33 @@
 \parindent=15mm
 \doublespacing
 \section{Формализованное описание разработанных классов}
-\begin{center}
-\begin{tabular}{ |p{4cm}|p{12cm}| }
-	\hline
-	\multicolumn{2}{ |c| }{\textbf{MemoryPage}} \\
-	\hline
-	Тип & Описание метода \\ \hline
-	\multirow{2}{*}{} & \textbf{MemoryPage(int number, String status)} \\
- 	& Инициализация страницы памяти с указанным номером (number) и статусом (status) \\ \hline
-	\multirow{2}{*}{\textbf{int}} & \textbf{getNumber()} \\
- 	& получение номера страницы\\ \hline
-	\multirow{2}{*}{\textbf{String}} & \textbf{getStatus()} \\
- 	& получение статуса страницы\\ \hline
-	\multirow{2}{*}{\textbf{void}} & \textbf{setStatus(String status)} \\
- 	& изменить статус страницы на новый статус (status)\\ \hline 	
-\end{tabular}
 
-\begin{tabular}{ |p{4cm}|p{12cm}| }
-	\hline
-	\multicolumn{2}{ |c| }{\textbf{MemoryPagesQueue}} \\
-	\hline
-	Тип & Описание метода \\ \hline
-	\multirow{2}{*}{} & \textbf{MemoryPagesQueue(int capacity)} \\
- 	& Инициализация очереди страниц памяти с заданным максимальным количеством элементов (capacity) \\ \hline
-	\multirow{2}{*}{\textbf{void}} & \textbf{enqueue(MemoryPage page)} \\
- 	& добавить страницу памяти в очередь\\ \hline
-	\multirow{2}{*}{\textbf{MemoryPage}} & \textbf{dequeue()} \\
- 	& извлечь страницу памяти из очереди\\ \hline
-	\multirow{2}{*}{\textbf{boolean}} & \textbf{isEmpty()} \\
- 	& пустая ли очередь\\ \hline 	
- 	\multirow{2}{*}{\textbf{boolean}} & \textbf{isFull()} \\
- 	& заполнена ли очередь\\ \hline 	
- 	\multirow{2}{*}{\textbf{int}} & \textbf{getLength()} \\
- 	& получить количество элементов в очереди\\ \hline 	
- 	\multirow{2}{*}{\textbf{MemoryPage[]}} & \textbf{getPages()} \\
- 	& получить массив элементов \\ \hline 	
-\end{tabular}
+\renewcommand{\lstlistingname}{Класс}
+\lstinputlisting[caption=MainController, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/MainController.java}
 
-\begin{tabular}{ |p{4cm}|p{12cm}| }
-	\hline
-	\multicolumn{2}{ |c| }{\textbf{Process}} \\
-	\hline
-	Тип & Описание метода \\ \hline
-	\multirow{2}{*}{} & \textbf{Process(int id)} \\
- 	& Инициализация процесса с заданным индентификатором (id) \\ \hline
- 	\multirow{2}{*}{\textbf{int}} & \textbf{getId()} \\
- 	& Получить индентификатор процесса \\ \hline
- 	\multirow{2}{*}{\textbf{void}} & \textbf{addMemoryPage(MemoryPage page)} \\
- 	& Добавить процессу страницу памяти (page) \\ \hline
- 	\multirow{2}{*}{\textbf{MemoryPage}} & \textbf{retrieveMemoryPage()} \\
- 	& Получить страницу памяти \\ \hline
- 	\multirow{2}{*}{\textbf{MemoryPage[]}} & \textbf{getPages()} \\
- 	& Получить страницы памяти \\ \hline
- 	\multirow{2}{*}{\textbf{int}} & \textbf{getPagesCount()} \\
- 	& Получить количество страниц памяти \\ \hline
-\end{tabular}
+\lstinputlisting[caption=MemoryStatus, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/MemoryStatus.java}
 
-\begin{tabular}{ |p{4cm}|p{12cm}| }
-	\hline
-	\multicolumn{2}{ |c| }{\textbf{ProcessesList}} \\
-	\hline
-	Тип & Описание метода \\ \hline
- 	\multirow{2}{*}{\textbf{ListItem}} & \textbf{getHead()} \\
- 	& Получить корневой контейнер процесса \\ \hline
- 	\multirow{2}{*}{\textbf{boolean}} & \textbf{isEmpty()} \\
- 	& Пустой ли список процессов? \\ \hline
- 	\multirow{2}{*}{\textbf{int}} & \textbf{getLength()} \\
- 	& Получить количество элементов в списке процессов \\ \hline
- 	\multirow{2}{*}{\textbf{void}} & \textbf{add(Process process)} \\
- 	& Добавить процесс в список \\ \hline
- 	\multirow{2}{*}{\textbf{void}} & \textbf{remove(int index)} \\
- 	& Удалить процесс из списка с заданным индексом (index) \\ \hline
- 	\multirow{2}{*}{\textbf{int}} & \textbf{getIndex(Process process)} \\
- 	& Получить индекс заданного процесса (process) \\ \hline
- 	\multirow{2}{*}{\textbf{ListItem}} & \textbf{get(int index)} \\
- 	& Получить контейнер процесса по заданному индексу (index)\\ \hline
-\end{tabular}
+\lstinputlisting[caption=ProcessTreeCell, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/ProcessTreeCell.java}
 
-\begin{tabular}{ |p{4cm}|p{12cm}| }
-	\hline
-	\multicolumn{2}{ |c| }{\textbf{VirtualMachine}} \\
-	\hline
-	Тип & Описание метода \\ \hline
-	\multirow{2}{*}{} & \textbf{VirtualMachine(String fileName)} \\
- 	& Инициализация объкта загрузки и сохранения списка процессов \\ \hline
- 	\multirow{2}{*}{\textbf{void}} & \textbf{save(ProcessesList processes)} \\
- 	& Сериализация списка процессов в XML файл \\ \hline
- 	\multirow{2}{*}{\textbf{ProcessesList}} & \textbf{load()} \\
- 	& Загрузка списка процессов из XML файла \\ \hline
-\end{tabular}
-\end{center}
+\lstinputlisting[caption=MemoryPage, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/domain/MemoryPage.java}
+
+\lstinputlisting[caption=MemoryPagesQueue, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/domain/MemoryPagesQueue.java}
+
+\lstinputlisting[caption=Process, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/domain/Process.java}
+
+\lstinputlisting[caption=ProcessesList, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/domain/ProcessesList.java}
+
+\lstinputlisting[caption=VirtualMachine, style=java,  inputencoding=cp1251]{src_desc/main/java/com/github/llxff/domain/VirtualMachine.java}
 
 \newpage
 \parindent=15mm
 \section{Описание демонстрационного модуля}
 
-\begin{figure}[!hb]
+\begin{figure}[!h]
     \centering
     \includegraphics[width=1\textwidth]{screenshots/1.png}
-    \caption{Начальный экран}
+    \caption{Окно программы}
     \label{fig:mesh1}
-\end{figure}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=1\textwidth]{screenshots/2.png}
-    \caption{Меню добавление процесса}
-    \label{fig:mesh2}
-\end{figure}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=1\textwidth]{screenshots/3.png}
-    \caption{Меню управления памятью процесса}
-    \label{fig:mesh3}
-\end{figure}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=1\textwidth]{screenshots/4.png}
-    \caption{Просмотр памяти процесса}
-    \label{fig:mesh4}
-\end{figure}
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=1\textwidth]{screenshots/5.png}
-    \caption{Изменение статуса памяти}
-    \label{fig:mesh5}
 \end{figure}
 
 Графичиский интерфейс приложения реализован при помощи технологии JavaFX и описан в файле project.fxml.
@@ -247,9 +200,9 @@
 
 Обработчиком события клика по компоненту кнопки загрузки списка процессов является метод loadProcessesList контроллера MainController. При вызове этого метода происходит отображение диалога выбра файла и после задания нужных параметров происходит инициализация объекта класса VirtualMachine, с помощью которого происходит десериализация списка процессов из выбранного XML файла с последующим отображением загруженного списка процессов в интерфейсе программы.
  
-Для добавления процесса необходимо нажать правой кнопкой мыши на элемент «Список процессов» в области списка процессов. После этого отобразится контекстное меню, которое изображено на рисунке 2. Это контекстное меню содержит 1 меню «Добавить процесс», при выборе которого добавится новый процесс в объект класса ProcessList, значение которого отображено в списке процессов. 
+Для добавления процесса необходимо нажать правой кнопкой мыши на элемент «Список процессов» в области списка процессов. После этого отобразится контекстное меню. Это контекстное меню содержит меню «Добавить процесс», при выборе которого добавится новый процесс в объект класса ProcessList, значение которого отображено в списке процессов. 
 
-Для добавления новой страницы памяти, удаления процесса или памяти, необходимо выбрать нужный процесс в списке процессов и нажать на него правой кнопкой мыши. После этого отобразиться контекстное меню процесса, которое содержит следующие пункты меню. Это контекстное меню изображено на рисунке 3.
+Для добавления новой страницы памяти, удаления процесса или памяти, необходимо выбрать нужный процесс в списке процессов и нажать на него правой кнопкой мыши. После этого отобразиться контекстное меню процесса, которое содержит следующие пункты меню.
 
 Добавить страницу памяти - при выборе этого элемента меню, будет добавлен новый объект памяти MemoryPage в выбранный процесс.
 
@@ -257,52 +210,28 @@
 
 Удалить память - при выборе этого элемента меню, будет объект памяти будет извлечен из очереди памяти процесса.
 
-На рисунке 4 изображено окно программы после добавления процессов или загрузки ранее сохраненных процессов.
-
-Для изменения статуса памяти нужно выбрать необходимый процесс, после чего в таблице объектов памяти процесса нужно дважды кликнуть по статусу нужной памяти. После этого в открывшемся списке возможных статусов, который изображен на рисунке 5, выбрать необходимый статус.
+Для изменения статуса памяти нужно выбрать необходимый процесс, после чего в таблице объектов памяти процесса нужно дважды кликнуть по статусу нужной памяти. После этого в открывшемся списке возможных статусов можно выбрать необходимый статус.
 
 \newpage
 \parindent=15mm
 \section{Описание структуры проекта}
 
-\renewcommand*\DTstylecomment{\rmfamily\color{black}\textsc}
-\renewcommand*\DTstyle{\ttfamily\textcolor{black}}
-\dirtree{%
-.1 /.
-.2 bin.
-.3 run\DTcomment{\small{Скрипт для компиляции и запуска проекта}}.
-.2 src.
-.3 main.
-.4 java.
-.5 com.github.llxff.
-.6 domain.
-.7 MemoryPage.java\DTcomment{\small{Класс страницы памяти}}.
-.7 MemoryPagesQueue.java\DTcomment{\small{Класс очереди страниц памяти}}.
-.7 Process.java\DTcomment{\small{Класс процесса}}.
-.7 ProcessesList.java\DTcomment{\small{Класс списка процессов}}.
-.7 VirtualMachine.java\DTcomment{\small{Класс сериализации и десериализации списка процессов}}.
-.6 Main.java\DTcomment{\small{Класс инициализации приложения}}.
-.6 MainController.java\DTcomment{\small{Главный контроллер приложения}}.
-.6 MemoryStatus.java\DTcomment{\small{Класс представления статуса страницы памяти}}.
-.6 ProcessTreeCell.java\DTcomment{\small{Класс предаставления процесса}}.
-.4 resources.
-.5 fxml.
-.6 project.fxml\DTcomment{\small{Файл графического интерфейса}}.
-.2 pom.xml\DTcomment{\small{Файл конфигурации Maven}}.
-.3
-}
+При выполнении данной работы я воспользовался строго типизированным объектно-ориентированным языком программирования Java 8, поскольку инфраструктура языка позволяет писать кроссплатформенные приложения с наименьшими трудозатратами. Для построения графического интерфейса пользователя я выбрал технологию JavaFX 8, для юнит тестирования во время разработки используется фреймворк JUnit, для сериализации используется библиотека XStream, для сборки проекта используется Maven и в качестве IDE я использовал IntelliJ IDEA CE.
+
+Проект имеет структуру типичного Java приложения: в папке src/main находится папка основного пакета приложения, а так же папка resources, в которой находится файл project.fxml, описывающий графический интерфейс. В папке src/test находятся юнит тесты приложения, в корне проекта лежит файл pom.xml, описывающий конфигурацию Maven.
 
 \newpage
 \begin{thebibliography}{99}
-\bibitem{01}	Эрих Гамма, Ричард Хелм, Ральф Джонсон, Джон Влиссидес «Приемы объектно-ориентированного проектирования. Паттерны проектирования». Санкт-Петербург «Питер» 2016 г.
-\bibitem{01}	Роберт К. Мартин «Чистый код: создание, анализ и рефакторинг». Санкт-Петербург «Питер» 2016 г.
-\bibitem{01}	Стив Макконнелл «Совершенный код». Санкт-Петербург «BHV» 2017 г.
-\bibitem{01}	Мартин Фаулер, Дейвид Райс, Мэттью Фоммел, Эдвард Хайет, Роберт Ми, Рэнди Стаффорд «Шаблоны корпоративных приложений». Москва «Вильямс» 2016 г.
-\bibitem{01}	Томас Х. Кормен, Чарльз И. Лейзерсон, Рональд Л. Ривест, Клиффорд Штайн «Алгоритмы. Построение и анализ». Москва «Вильямс» 2016 г.
 \bibitem{01}	Харольд Абельсон, Джеральд Джей Сассман «Структура и Интерпретация Компьютерных Программ». Москва «Добросвет» 2010 г.
+\bibitem{01}	Эрих Гамма, Ричард Хелм, Ральф Джонсон, Джон Влиссидес «Приемы объектно-ориентированного проектирования. Паттерны проектирования». Санкт-Петербург «Питер» 2016 г.
+\bibitem{01}	Томас Х. Кормен, Чарльз И. Лейзерсон, Рональд Л. Ривест, Клиффорд Штайн «Алгоритмы. Построение и анализ». Москва «Вильямс» 2016 г.
+\bibitem{01}	Стив Макконнелл «Совершенный код». Санкт-Петербург «BHV» 2017 г.
+\bibitem{01}	Роберт К. Мартин «Чистый код: создание, анализ и рефакторинг». Санкт-Петербург «Питер» 2016 г.
+\bibitem{01}	Мартин Фаулер, Дейвид Райс, Мэттью Фоммел, Эдвард Хайет, Роберт Ми, Рэнди Стаффорд «Шаблоны корпоративных приложений». Москва «Вильямс» 2016 г.
 \bibitem{01}	Эрик Эванс «Предметно-ориентированное проектирование (DDD). Структуризация сложных программных систем». Москва «Вильямс» 2017 г.
-\bibitem{01}	Sandi Metz, Katrina Owen «99 Bottles of OOP». 2017 г.
 \bibitem{01}	Robert Liguori, Patricia Liguori «Java Pocket Guide». Newton «O'Reilly Media» 2008 г.
+\bibitem{01}	Sandi Metz, Katrina Owen «99 Bottles of OOP». 2017 г.
+\bibitem{01} Kishori Sharan «Learn JavaFX 8: Building User Experience and Interfaces with Java 8». New York Apress 2015 г.
 \end{thebibliography}
 
 \newpage
@@ -311,45 +240,8 @@
 \section*{Полный листинг программы с краткими комментариями}
 \addcontentsline{toc}{section}{Полный листинг программы с краткими комментариями}%
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
-\definecolor{light-gray}{gray}{0.25}
-
-\lstdefinestyle{java}{
-  language=Java,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\footnotesize\ttfamily},
-  numberstyle={\tiny},
-  numbers=left,
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3
-}
-
-\lstdefinestyle{xml}{
-  language=XML,
-  aboveskip=3mm,
-  belowskip=3mm,
-  showstringspaces=false,
-  columns=flexible,
-  basicstyle={\footnotesize\ttfamily},
-  numberstyle={\tiny},
-  numbers=left,
-  keywordstyle=\color{blue},
-  commentstyle=\color{dkgreen},
-  stringstyle=\color{mauve},
-  breaklines=true,
-  breakatwhitespace=true,
-  tabsize=3,
-  morekeywords={AnchorPane, children, TreeView, TableView, placeholder, Label, columns, TableColumn, font, Font, Button, import}
-}
+\renewcommand{\lstlistingname}{Листинг}
+\setcounter{lstlisting}{0}
 
 \lstinputlisting[caption=Main, style=java,  inputencoding=cp1251]{src/main/java/com/github/llxff/Main.java}
 
