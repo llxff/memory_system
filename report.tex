@@ -52,7 +52,7 @@
   morekeywords={AnchorPane, children, TreeView, TableView, placeholder, Label, columns, TableColumn, font, Font, Button, import}
 }
 
-\ESKDdepartment{Негосударственное образовательное учреждение высшего профессионального образования}
+\ESKDdepartment{Негосударственное образовательное учреждение высшего образования}
 \ESKDcompany{Университет управления «ТИСБИ»}
 \renewcommand{\ESKDtitleFontIV}{\LARGE}
 \renewcommand{\ESKDtheTitleFieldIV}{КУРСОВАЯ РАБОТА}
@@ -240,6 +240,33 @@
 При выполнении данной работы я воспользовался строго типизированным объектно-ориентированным языком программирования Java 8, поскольку инфраструктура языка позволяет писать кроссплатформенные приложения с наименьшими трудозатратами. Для построения графического интерфейса пользователя я выбрал технологию JavaFX 8, для юнит тестирования во время разработки используется фреймворк JUnit, для сериализации используется библиотека XStream, для сборки проекта используется Maven и в качестве IDE я использовал IntelliJ IDEA CE.
 
 Проект имеет структуру типичного Java приложения: в папке src/main находится папка основного пакета приложения, а так же папка resources, в которой находится файл project.fxml, описывающий графический интерфейс. В папке src/test находятся юнит тесты приложения, в корне проекта лежит файл pom.xml, описывающий конфигурацию Maven.
+
+\renewcommand*\DTstylecomment{\rmfamily\color{black}\textsc}
+\renewcommand*\DTstyle{\ttfamily\textcolor{black}}
+\dirtree{%
+.1 /.
+.2 bin.
+.3 run\DTcomment{\small{Скрипт для компиляции и запуска проекта}}.
+.2 src.
+.3 main.
+.4 java.
+.5 com.github.llxff.
+.6 domain.
+.7 MemoryPage.java\DTcomment{\small{Класс страницы памяти}}.
+.7 MemoryPagesQueue.java\DTcomment{\small{Класс очереди страниц памяти}}.
+.7 Process.java\DTcomment{\small{Класс процесса}}.
+.7 ProcessesList.java\DTcomment{\small{Класс списка процессов}}.
+.7 VirtualMachine.java\DTcomment{\small{Класс сериализации и десериализации списка процессов}}.
+.6 Main.java\DTcomment{\small{Класс инициализации приложения}}.
+.6 MainController.java\DTcomment{\small{Главный контроллер приложения}}.
+.6 MemoryStatus.java\DTcomment{\small{Класс представления статуса страницы памяти}}.
+.6 ProcessTreeCell.java\DTcomment{\small{Класс предаставления процесса}}.
+.4 resources.
+.5 fxml.
+.6 project.fxml\DTcomment{\small{Файл графического интерфейса}}.
+.2 pom.xml\DTcomment{\small{Файл конфигурации Maven}}.
+.3
+}
 
 \newpage
 \begin{thebibliography}{99}
